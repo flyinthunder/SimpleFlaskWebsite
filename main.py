@@ -1,3 +1,6 @@
-print("hello");
-for i in range(0,10):
-    print(i); print(i+1); print("watermelon sugar");
+from Website import create_app
+
+app = create_app()
+
+if __name__ == '__main__':
+    app.run(debug=True)
