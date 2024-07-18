@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card my-6 mx-auto rounded" style="max-width: 50%; margin-top: 5rem; border: 1px solid black">
+    <div class="row g-0">
+        <div class="col-md-4 rounded">
+            <img style="width: 100%" src="{{item.img_url}}" class="img-fluid rounded-start" alt="{{ item.title }}">
+        </div>
+        <div class="col-md-8 rounded">
+            <div class="card-body rounded">
+                <h5 class="card-title mt-4 mb-4">{{ item.name }}</h5>
+                <div class="card-text mt-4 mb-4">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ item.description }}</li>
+                        <li class="list-group-item"><strong>Price:</strong> ${{ item.price }}</li>
+                    </ul>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="button" class="btn btn-success btn-sm">
+                        <a href="/{{item.id}}/add_to_cart" class="card-link" style="color:white; text-decoration:none">Add to Cart</a>
+                      </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

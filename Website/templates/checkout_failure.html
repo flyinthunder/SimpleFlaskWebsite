@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block title %} Success {% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="center", style="display: flex; justify-content: center;">
+        <img src="{{url_for('static', filename='error.png')}}", width="300vw", height="180vw", class="center">
+    </div>
+    <div class="center", style="display: flex; justify-content: center;">
+        <h1>Oops. That did not go as planned.</h1>
+    </div>
+    <div class="center", style="display: flex; justify-content: center;">
+        <a class="btn btn-primary" href="{{ url_for('views.home') }}"> Home </a>
+    </div>
+</div>
+
+
+{% endblock %}

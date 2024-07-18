@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% block title %} Cart {% endblock %}
+{% block content %}
+<h1 style="text-align:center; margin:4.5rem 0 2rem 0; font-weight:500; font-size: 60px; text-shadow:0 0 0.1em rgb(255, 255, 255)">Cart:</h1>
+<div class="d-flex justify-content-center flex-wrap">
+    {% for inv_item in cart %}
+    <div class="card" style="width: 14rem; margin:0; border: 1px solid black">
+        <a class="text-dark text-decoration-none" href="{{ url_for('views.getitem', item_id=inv_item.id) }}">
+            <img style="width:80%; margin: 0 auto; padding-left: 3rem" src="{{ inv_item.img_url }}" class="card-img-top"
+                alt="{{ inv_item.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ inv_item.name }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Quantity: {{ inv_item.quantity1 }}</li>
+                <li class="list-group-item">Price: {{ inv_item.price * inv_item.quantity1 }}</li>
+            </ul>
+        </a>
+        <div class="card-body">
+            <form id="remove_from_cart_form_{{ inv_item.id }}" action="{{ url_for('views.remove_from_cart', item_id=inv_item.id) }}" method="post">
+                <button type="submit" class="btn btn-danger" form="remove_from_cart_form_{{ inv_item.id }}">Remove</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="card text-center" style="width: 100%; border: 1px solid black">
+    <div class="card-body">
+        <h5 class="card-title">Total:</h5>
+        <p class="card-text">${{final_total}}</p>
+        {% if cart != [] %}
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Clear Cart
+            </button>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                Checkout
+            </button>
+        {% endif %}
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">This will clear all items in your cart!</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <a class="btn btn-danger" href="{{ url_for('views.clear_cart') }}">Clear Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Thank you for shopping with us.</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Click 'Submit' to complete your order.
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-primary" href="{{ url_for('views.checkout') }}">Submit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+{% endblock %}

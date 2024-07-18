@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block title %} Admin Control Panel {% endblock %}
+{% block content %}
+<h1 style="text-align:center; margin:4.5rem 0 2rem 0; font-weight:500; text-shadow:0 0 0.1em rgb(255, 255, 255)">Make Admin:</h1>
+<div class="card" style="width: 18rem; border: 1px solid black; margin:0 auto">
+    <div class="card-body">
+      <h5 class="card-title" style="text-align:center">Make "{{ email }}" an Admin?</h5>
+      <a href="/make_admin/{{ email }}" class="btn btn-success btn-sm" style="margin-left: 5rem">Make Admin</a>
+    </div>
+  </div>
+
+{% endblock %}
