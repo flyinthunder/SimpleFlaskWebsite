@@ -308,3 +308,10 @@ def MakeAdmin(email):
     user.makeAdmin()
     
     return redirect(url_for('views.admin'))
+
+@views.route("/<int:item_id>/delete", methods=["POST", "GET"])
+def deleteItem(item_id):
+    item = Inventory.query.get(item_id)
+    db.session.delete(item)
+    db.session.commit()
+    return redirect(url_for('views.admin'))

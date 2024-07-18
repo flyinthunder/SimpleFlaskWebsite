@@ -5,7 +5,7 @@ from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)
-user_types = ['admin', 'POS', 'Sensor', 'Customer']
+user_types = ['POS', 'Sensor', 'Customer']
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
